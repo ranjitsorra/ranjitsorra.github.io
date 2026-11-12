@@ -99,6 +99,11 @@
   .item h3 { margin: 2px 0 4px; font-size: 17px; }
   .item p { margin: 0; color: var(--muted); font-size: 15px; }
 
+
+  .files { margin: 14px 0 0; padding: 12px 0 0; border-top: 1px dashed var(--line); display: flex; flex-direction: column; gap: 6px; }
+  .files a { font-size: 14px; display: flex; align-items: center; gap: 8px; }
+  .files a::before { content: "\2197"; color: var(--muted); }
+
   footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--muted); font-size: 14px; }
   footer .row { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; }
 
@@ -155,64 +160,8 @@
 
     <section id="projects">
       <h2>Selected Projects</h2>
-      <p class="sub">A sample of the work. Details available on request.</p>
-      <div class="grid">
-
-        <article class="card">
-          <h3>Containerized DC Fast Charger</h3>
-          <p>System design of a containerized DC EV fast-charging station: power stages, control wiring, thermal and site integration.</p>
-          <div class="tags"><span class="tag">EV Charging</span><span class="tag">System Design</span></div>
-        </article>
-
-        <article class="card">
-          <h3>CCS2 Master Controller</h3>
-          <p>Master controller architecture for CCS2 DC charging equipment, with MCU selection, ISO 15118 / CAN bridging and an OCPP-connected display unit.</p>
-          <div class="tags"><span class="tag">Embedded</span><span class="tag">CCS2</span><span class="tag">OCPP</span></div>
-        </article>
-
-        <article class="card">
-          <h3>DAB Converter Control</h3>
-          <p>Dual active bridge converter on the TMS320F28386D: instability root-cause analysis and control-loop redesign.</p>
-          <div class="tags"><span class="tag">C2000 DSP</span><span class="tag">Control Loops</span></div>
-        </article>
-
-        <article class="card">
-          <h3>1000 V / 500 V DC-DC Converter</h3>
-          <p>Failure analysis and corrective actions on a high-voltage DC-DC converter, driving design changes into the next revision.</p>
-          <div class="tags"><span class="tag">HV Design</span><span class="tag">Failure Analysis</span></div>
-        </article>
-
-        <article class="card">
-          <h3>Regenerative Electronic Load</h3>
-          <p>100 kW bidirectional load on a 415 V grid with a 1050 V DC-bus active front end, returning test energy to the grid.</p>
-          <div class="tags"><span class="tag">AFE</span><span class="tag">Bidirectional</span></div>
-        </article>
-
-        <article class="card">
-          <h3>High-Voltage Sensing (2 kV / 3 kV)</h3>
-          <p>Isolated HV measurement using an isolation amplifier with voltage-to-frequency conversion for noise-robust transmission.</p>
-          <div class="tags"><span class="tag">Isolation</span><span class="tag">Analog</span></div>
-        </article>
-
-        <article class="card">
-          <h3>Railway ATP Unit EMI/EMC</h3>
-          <p>EMI/EMC compliance work for a railway automatic train protection loco unit: pre-compliance, mitigation and test support.</p>
-          <div class="tags"><span class="tag">EMI/EMC</span><span class="tag">Railway</span></div>
-        </article>
-
-        <article class="card">
-          <h3>30 kV Transformer Potting</h3>
-          <p>Evaluation of potting compounds for a 30 kV isolated transformer, balancing dielectric strength, thermal behavior and manufacturability.</p>
-          <div class="tags"><span class="tag">Magnetics</span><span class="tag">Insulation</span></div>
-        </article>
-
-        <article class="card">
-          <h3>SiC MOSFET Roadmap</h3>
-          <p>Technology roadmap and requirements for a multi-stage high-power charger platform built around SiC MOSFETs.</p>
-          <div class="tags"><span class="tag">SiC</span><span class="tag">Roadmap</span></div>
-        </article>
-
-      </div>
+      <p class="sub">A sample of the work. Supporting documents are linked where available.</p>
+      <div class="grid" id="project-grid"></div>
     </section>
 
     <section id="skills">
@@ -291,6 +240,34 @@
   </div>
 </footer>
 
+<script>
+/* ------------------------------------------------------------------
+   EDIT HERE. One object per project.
+   files: put the actual files in the repo (e.g. files/project-1/report.pdf)
+          and list them below. Any type works: pdf, png, jpg, zip, xlsx...
+   ------------------------------------------------------------------ */
+const PROJECTS = [
+  { title: "Project 1", description: "Short description of the project, your role and the outcome.", tags: ["Tag A", "Tag B"],
+    files: [ { label: "Project report (PDF)", path: "files/project-1/report.pdf" },
+             { label: "Schematic (PNG)",      path: "files/project-1/schematic.png" } ] },
+  { title: "Project 2", description: "Short description of the project, your role and the outcome.", tags: ["Tag A", "Tag B"], files: [] },
+  { title: "Project 3", description: "Short description of the project, your role and the outcome.", tags: ["Tag A", "Tag B"], files: [] },
+  { title: "Project 4", description: "Short description of the project, your role and the outcome.", tags: ["Tag A", "Tag B"], files: [] },
+  { title: "Project 5", description: "Short description of the project, your role and the outcome.", tags: ["Tag A", "Tag B"], files: [] },
+  { title: "Project 6", description: "Short description of the project, your role and the outcome.", tags: ["Tag A", "Tag B"], files: [] }
+];
+
+const esc = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+document.getElementById('project-grid').innerHTML = PROJECTS.map(p => `
+  <article class="card">
+    <h3>${esc(p.title)}</h3>
+    <p>${esc(p.description)}</p>
+    <div class="tags">${(p.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+    ${(p.files && p.files.length)
+      ? `<div class="files">${p.files.map(f => `<a href="${esc(f.path)}" target="_blank" rel="noopener">${esc(f.label)}</a>`).join('')}</div>`
+      : ''}
+  </article>`).join('');
+</script>
 <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 </body>
 </html>
