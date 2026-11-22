@@ -1,276 +1,95 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ranjit | Power Electronics Engineer</title>
-<meta name="description" content="Portfolio of Ranjit Sorra: power converter design, embedded control and validation.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7f9fc">
+<meta name="description" content="Ranjit Sorra — power electronics engineer focused on medium-voltage conversion, converter hardware, control and validation.">
+<title>Ranjit Sorra | Power Electronics Engineer</title>
 <style>
-  :root {
-    --bg: #fafaf7;
-    --surface: #ffffff;
-    --text: #1c1f23;
-    --muted: #5d6670;
-    --line: #e4e4de;
-    --accent: #0b6e6e;
-    --accent-soft: #e3f1f0;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0f1214;
-      --surface: #171b1e;
-      --text: #e8eaec;
-      --muted: #97a1aa;
-      --line: #262c31;
-      --accent: #4fd1c5;
-      --accent-soft: #13302e;
-    }
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
-
-  header.nav {
-    position: sticky; top: 0; z-index: 10;
-    background: color-mix(in srgb, var(--bg) 88%, transparent);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--line);
-  }
-  .nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 56px; }
-  .brand { font-weight: 700; letter-spacing: .2px; color: var(--text); }
-  .nav nav a { margin-left: 20px; color: var(--muted); font-size: 14px; }
-  .nav nav a:hover { color: var(--accent); text-decoration: none; }
-
-  .hero { padding: 88px 0 56px; }
-  .eyebrow { color: var(--accent); font-size: 13px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase; }
-  h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.1; margin: 12px 0 16px; letter-spacing: -.02em; }
-  .lead { font-size: 19px; color: var(--muted); max-width: 640px; margin: 0 0 28px; }
-  .btns { display: flex; flex-wrap: wrap; gap: 12px; }
-  .btn {
-    display: inline-block; padding: 10px 20px; border-radius: 8px;
-    border: 1px solid var(--accent); font-size: 15px; font-weight: 600;
-  }
-  .btn.primary { background: var(--accent); color: var(--bg); }
-  .btn.primary:hover { opacity: .9; text-decoration: none; }
-  .btn.ghost { color: var(--accent); }
-  .btn.ghost:hover { background: var(--accent-soft); text-decoration: none; }
-
-  section { padding: 56px 0; border-top: 1px solid var(--line); }
-  h2 { font-size: 24px; margin: 0 0 8px; letter-spacing: -.01em; }
-  .sub { color: var(--muted); margin: 0 0 32px; }
-
-  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-top: 8px; }
-  .stat { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
-  .stat b { display: block; font-size: 22px; color: var(--accent); }
-  .stat span { font-size: 14px; color: var(--muted); }
-
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 18px; }
-  .card {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
-    padding: 22px; transition: transform .15s, border-color .15s;
-  }
-  .card:hover { transform: translateY(-2px); border-color: var(--accent); }
-  .card h3 { margin: 0 0 6px; font-size: 17px; }
-  .card p { margin: 0 0 14px; color: var(--muted); font-size: 15px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag { background: var(--accent-soft); color: var(--accent); font-size: 12px; padding: 3px 9px; border-radius: 999px; font-weight: 600; }
-
-  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
-  .skills h3 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin: 0 0 10px; }
-  .skills ul { list-style: none; padding: 0; margin: 0; }
-  .skills li { padding: 5px 0; border-bottom: 1px dashed var(--line); font-size: 15px; }
-
-  .timeline { border-left: 2px solid var(--line); padding-left: 22px; }
-  .item { position: relative; margin-bottom: 28px; }
-  .item::before {
-    content: ""; position: absolute; left: -29px; top: 8px;
-    width: 10px; height: 10px; border-radius: 50%; background: var(--accent);
-  }
-  .item .when { font-size: 13px; color: var(--muted); }
-  .item h3 { margin: 2px 0 4px; font-size: 17px; }
-  .item p { margin: 0; color: var(--muted); font-size: 15px; }
-
-
-  .files { margin: 14px 0 0; padding: 12px 0 0; border-top: 1px dashed var(--line); display: flex; flex-direction: column; gap: 6px; }
-  .files a { font-size: 14px; display: flex; align-items: center; gap: 8px; }
-  .files a::before { content: "\2197"; color: var(--muted); }
-
-  footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--muted); font-size: 14px; }
-  footer .row { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; }
-
-  @media (max-width: 560px) {
-    .nav nav a:not(:last-child) { display: none; }
-    .hero { padding: 56px 0 40px; }
-  }
+:root{color-scheme:light dark;--bg:#f7f9fc;--paper:#fff;--ink:#162333;--muted:#58687a;--line:#dce4ed;--blue:#176d8d;--soft:#eaf3f7;--max:1050px}
+@media(prefers-color-scheme:dark){:root{--bg:#101820;--paper:#17232d;--ink:#eaf0f4;--muted:#aabac6;--line:#324350;--blue:#7fd2ee;--soft:#203642}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}a{color:var(--blue)}a:focus-visible,summary:focus-visible{outline:3px solid var(--blue);outline-offset:3px}h1,h2,h3,p{margin-top:0}h1,h2,h3{line-height:1.25;letter-spacing:-.025em}h1{font-size:clamp(2.35rem,5.5vw,4.25rem);max-width:850px;margin:14px 0 18px}h2{font-size:clamp(1.45rem,3vw,1.9rem);margin-bottom:9px}h3{font-size:1.08rem;margin-bottom:7px}p{margin-bottom:14px}.container{width:min(calc(100% - 40px),var(--max));margin-inline:auto}.muted,.section-intro{color:var(--muted)}.section-intro{max-width:680px;margin-bottom:24px}
+.site-header{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}.header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:68px}.brand{text-decoration:none;color:var(--ink);font-weight:750;white-space:nowrap;font-size:1.05rem}.brand span{color:var(--blue)}.nav{display:flex;align-items:center;gap:22px}.nav a{font-size:.88rem;text-decoration:none;color:var(--muted);white-space:nowrap}.nav a:hover{color:var(--blue)}
+.hero{padding:84px 0 72px}.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:750}.hero-lead{font-size:clamp(1.05rem,2.1vw,1.24rem);color:var(--muted);max-width:710px}.hero-meta{font-size:.87rem;color:var(--muted);margin:22px 0}.actions{display:flex;gap:11px;flex-wrap:wrap}.button{border:1px solid var(--blue);border-radius:8px;padding:10px 17px;text-decoration:none;font-weight:650;font-size:.92rem;display:inline-flex;align-items:center}.button.primary{background:var(--blue);color:#fff}.button.secondary{color:var(--blue)}.button:hover{opacity:.85}
+.section{padding:54px 0;border-top:1px solid var(--line);scroll-margin-top:85px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.panel{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:24px;min-width:0}.panel p{color:var(--muted);font-size:.94rem}.kicker{color:var(--blue);text-transform:uppercase;letter-spacing:.1em;font-size:.72rem;font-weight:750;margin-bottom:9px}.link-arrow{font-weight:650;text-decoration:none;font-size:.9rem}.link-arrow:hover{text-decoration:underline}.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}.chip{border-radius:5px;background:var(--soft);padding:4px 9px;color:var(--blue);font-size:.77rem;font-weight:600}
+.skills-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.skill-panel{padding:22px 24px}.skill-panel ul{margin:0;padding-left:19px;color:var(--muted);font-size:.91rem}.skill-panel li{margin:5px 0}.small-note{font-size:.8rem;color:var(--muted);margin-top:17px}
+.timeline{display:grid;gap:0}.role{display:grid;grid-template-columns:175px 1fr;gap:22px;padding:19px 0;border-bottom:1px solid var(--line)}.role:last-child{border-bottom:0}.when{color:var(--muted);font-size:.85rem;padding-top:3px}.role h3{margin:0 0 4px}.role p{font-size:.92rem;color:var(--muted);margin:0}.role .company{font-weight:600;color:var(--ink);margin-bottom:5px}
+.education{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.education .panel{padding:19px}.education .panel p{font-size:.86rem;margin:0}.publication{border-left:3px solid var(--blue);padding-left:17px;margin-top:22px}.publication p{color:var(--muted);font-size:.9rem}
+footer{padding:30px 0;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+@media(max-width:760px){.header-inner{display:block;padding-top:12px;padding-bottom:8px}.brand{display:block;margin-bottom:7px}.nav{gap:19px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}.nav a{font-size:.84rem}.hero{padding:54px 0 48px}.section{padding:39px 0}.role{grid-template-columns:1fr;gap:4px}.education{grid-template-columns:1fr}.panel{padding:19px}.skills-grid{gap:12px}}
+@media(max-width:540px){.container{width:min(calc(100% - 32px),var(--max))}.grid,.skills-grid{grid-template-columns:1fr}.hero{padding:43px 0}.hero-lead{font-size:1.04rem}.skill-panel{padding:18px}.section-intro{margin-bottom:18px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-
-<header class="nav">
-  <div class="wrap">
-    <a class="brand" href="#top">Ranjit</a>
-    <nav>
-      <a href="#projects">Projects</a>
-      <a href="/engineering/">Notebook</a>
-      <a href="#hobbies">Hobbies</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
-
+<header class="site-header"><div class="container header-inner">
+<a class="brand" href="#top">Ranjit <span>Sorra</span></a>
+<nav class="nav" aria-label="Main navigation"><a href="#projects">Projects</a><a href="#expertise">Expertise</a><a href="#experience">Experience</a><a href="#notes">Notebook</a><a href="#interests">Interests</a><a href="#contact">Contact</a></nav>
+</div></header>
 <main id="top">
-  <div class="wrap">
-
-    <section class="hero" style="border-top:none">
-      <div class="eyebrow">Power Electronics Engineer</div>
-      <h1>Power Converter Design, Control &amp; Validation</h1>
-      <p class="lead">Power electronics engineer with an M.Tech from IIT Delhi, working across converter hardware, embedded control, system integration and testing.</p>
-      <div class="btns">
-        <a class="btn primary" href="#projects">Explore projects</a>
-        <a class="btn ghost" href="#contact">Get in touch</a>
-      </div>
-    </section>
-
-    <section id="about">
-      <h2>About</h2>
-      <p>My work spans power-stage design, control implementation, hardware integration and experimental validation. I also contribute to engineering planning and team coordination.</p>
-    </section>
-
-    <section id="projects">
-      <h2>Selected Projects</h2>
-      <p class="sub">Academic projects only. New projects will be added as they are ready to share.</p>
-      <div class="grid" id="project-grid"></div>
-    </section>
-
-    <section id="personal-work"><h2>Independent Engineering &amp; Reading</h2><p class="sub">Open technical experiments and a personal reading archive.</p><div class="grid"><article class="card"><h3>Engineering Notebook</h3><p>Independent LTspice simulations, schematics, downloadable source files and design notes.</p><a href="/engineering/">Browse engineering notebook →</a></article><article class="card"><h3>Technical Articles</h3><p>Independent explanations, design methods and tutorials.</p><a href="/articles/">Read articles →</a></article></div></section>
-
-    <section id="hobbies"><h2>Hobbies &amp; Interests</h2><p class="sub">A personal reference of books I have read in Telugu and English.</p><div class="grid"><article class="card"><h3>Literature · తెలుగు</h3><p>20 books in Telugu, including translations and original Telugu literature.</p><a href="/books/telugu/">View Telugu reading list →</a></article><article class="card"><h3>Literature · English</h3><p>6 books in English.</p><a href="/books/english/">View English reading list →</a></article></div></section>
-
-    <section id="skills">
-      <h2>Technical Expertise</h2>
-      <p class="sub">Power electronics, electrical power systems and the engineering disciplines required to develop and validate high-power conversion equipment.</p>
-      <div class="skills">
-        <div><h3>Power Conversion &amp; Topologies</h3><ul>
-          <li>DC-DC and three-phase AC-DC / DC-AC conversion</li>
-          <li>Dual Active Bridge (DAB) and active front-end (AFE) concepts</li>
-          <li>Multilevel converters and modular multilevel converter (MMC) fundamentals</li>
-          <li>SiC MOSFET / IGBT power stages and gate-drive design</li>
-        </ul></div>
-        <div><h3>Power Systems &amp; Medium-Voltage Fundamentals</h3><ul>
-          <li>Three-phase power systems, transformers and electrical machines</li>
-          <li>Grid-connected converters, synchronization and power quality</li>
-          <li>Harmonics, reactive power and power-factor considerations</li>
-          <li>Grounding, insulation coordination and protection fundamentals</li>
-        </ul></div>
-        <div><h3>Converter Control &amp; Embedded Systems</h3><ul>
-          <li>Closed-loop voltage and current control</li>
-          <li>dq-frame control, SRF-PLL and PWM techniques</li>
-          <li>TI C2000 digital controllers and embedded C</li>
-          <li>Controller implementation and hardware integration</li>
-        </ul></div>
-        <div><h3>Hardware &amp; Magnetics</h3><ul>
-          <li>Power-stage schematics, PCB and busbar layout</li>
-          <li>Gate drivers, DC-link design and parasitic inductance</li>
-          <li>Inductors, transformers and thermal design considerations</li>
-          <li>EMI/EMC and high-voltage hardware design principles</li>
-        </ul></div>
-        <div><h3>Modeling &amp; Engineering Tools</h3><ul>
-          <li>MATLAB / Simulink</li>
-          <li>LTspice</li>
-          <li>ANSYS Maxwell</li>
-          <li>KiCad and Altium Designer</li>
-        </ul></div>
-        <div><h3>Testing, Integration &amp; Delivery</h3><ul>
-          <li>Double-pulse testing and switching characterization</li>
-          <li>Converter bring-up, measurement and debugging</li>
-          <li>System integration and experimental validation</li>
-          <li>Engineering planning, documentation and coordination</li>
-        </ul></div>
-      </div>
-      <p class="sub" style="margin-top:20px">Medium-voltage power-system topics are presented as relevant engineering fundamentals, not as claims of utility protection-system commissioning or field certification.</p>
-    </section>
-
-    <section id="experience">
-      <h2>Experience &amp; Education</h2>
-      <p class="sub">A background spanning power electronics development, electrical engineering and industrial systems.</p>
-      <div class="timeline">
-        <div class="item">
-          <div class="when">Professional experience</div>
-          <h3>Power Electronics Engineering — Lotus Wireless Technologies India Pvt. Ltd.</h3>
-          <p>Converter hardware, control integration, laboratory testing and engineering coordination. Employer-confidential technical details are not published.</p>
-        </div>
-        <div class="item">
-          <div class="when">Earlier industry experience</div>
-          <h3>Electrical Engineering — RINL, Visakhapatnam Steel Plant</h3>
-          <p>Industrial electrical and power-system environment, providing context for high-power equipment and electrical machines.</p>
-        </div>
-        <div class="item">
-          <div class="when">2022–2024</div>
-          <h3>M.Tech — Indian Institute of Technology Delhi</h3>
-          <p>Power Electronics, Electrical Machines &amp; Drives. Academic work included a SiC-based EV traction converter test bench and a non-inverting buck-boost converter.</p>
-        </div>
-        <div class="item">
-          <div class="when">Research publication</div>
-          <h3>IEEE Publication — SiC Power Module Packaging</h3>
-          <p>Co-authored research on low-parasitic-inductance design and characterization of a PCB-embedded SiC MOSFET half-bridge power module.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <p class="sub">Open to conversations on power electronics, EV charging and compliance.</p>
-      <div class="btns">
-        <a class="btn primary" href="mailto:sriitd24@gmail.com">sriitd24@gmail.com</a>
-        <a class="btn ghost" href="mailto:ranjit.sorra@lotuswireless.com">ranjit.sorra@lotuswireless.com</a>
-        <a class="btn ghost" href="https://www.linkedin.com/in/ranjitsorra/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn ghost" href="https://github.com/ranjitsorra" target="_blank" rel="noopener">GitHub</a>
-      </div>
-    </section>
-
-  </div>
+<section class="hero"><div class="container">
+<div class="eyebrow">Power Electronics Engineer · M.Tech, IIT Delhi</div>
+<h1>Power conversion, from design to validation.</h1>
+<p class="hero-lead">I develop high-power AC/DC and DC/DC converters, with a focus on medium-voltage applications, power-stage hardware, closed-loop control and experimental validation.</p>
+<p class="hero-meta">Senior Engineer · Lotus Wireless Technologies &nbsp;·&nbsp; Visakhapatnam, India</p>
+<div class="actions"><a class="button primary" href="#projects">Explore projects</a><a class="button secondary" href="#contact">Contact me</a></div>
+</div></section>
+<section id="projects" class="section"><div class="container">
+<h2>Selected academic projects</h2><p class="section-intro">A small selection of work from my postgraduate studies. Additional independent projects and technical material will be added over time.</p>
+<div class="grid">
+<article class="panel"><div class="kicker">IIT Delhi · Power conversion</div><h3>SiC EV Traction Converter Test Bench</h3><p>Design and development of an 800 V, 50 kW SiC-based inverter test bench, covering converter hardware, digital control and laboratory validation.</p><div class="chips"><span class="chip">SiC</span><span class="chip">Three-phase inverter</span><span class="chip">Control</span></div></article>
+<article class="panel"><div class="kicker">Academic converter design</div><h3>Non-Inverting Buck-Boost Converter</h3><p>Design and study of a DC/DC converter capable of step-up and step-down operation, including component selection and control considerations.</p><div class="chips"><span class="chip">DC/DC</span><span class="chip">Converter design</span><span class="chip">Simulation</span></div></article>
+</div></div></section>
+<section id="expertise" class="section"><div class="container">
+<h2>Technical expertise</h2><p class="section-intro">Core capabilities across power electronics, electrical power systems, controls and hardware engineering.</p>
+<div class="skills-grid">
+<div class="panel skill-panel"><h3>Power converters &amp; semiconductor hardware</h3><ul><li>High-power AC/DC and DC/DC conversion</li><li>DAB, AFE and multiphase converter topologies</li><li>SiC power stages, gate drivers and protection circuits</li><li>Power-stage layout, DC-link and busbar considerations</li></ul></div>
+<div class="panel skill-panel"><h3>Medium-voltage &amp; power systems</h3><ul><li>Three-phase electrical systems and industrial power distribution</li><li>Transformers, synchronous machines and VFDs</li><li>Grounding, electrical protection and insulation fundamentals</li><li>Grid interface, harmonics and power-quality considerations</li></ul></div>
+<div class="panel skill-panel"><h3>Control, modeling &amp; simulation</h3><ul><li>Closed-loop voltage and current control</li><li>Digital control, PWM and synchronization</li><li>MATLAB/Simulink, PLECS and LTspice</li><li>ANSYS Maxwell and Q3D Extractor</li></ul></div>
+<div class="panel skill-panel"><h3>Design &amp; experimental validation</h3><ul><li>Analog sensing, schematics and PCB design reviews</li><li>Hardware bring-up, debugging and system integration</li><li>Converter testing and switching characterization</li><li>EMI/EMC and engineering documentation</li></ul></div>
+</div><p class="small-note">Skills reflect engineering experience and relevant power-system fundamentals; they do not imply certification in every medium-voltage discipline.</p>
+</div></section>
+<section id="experience" class="section"><div class="container">
+<h2>Experience</h2><p class="section-intro">Engineering experience across power converter development, industrial electrical systems and applied research.</p>
+<div class="timeline">
+<div class="role"><div class="when">Aug 2024 – Present</div><div><h3>Senior Engineer — Power Electronics</h3><p class="company">Lotus Wireless Technologies India Pvt. Ltd.</p><p>Power-converter hardware development, closed-loop control, prototype testing and integration for medium-voltage charging applications.</p></div></div>
+<div class="role"><div class="when">May 2023 – Jul 2024</div><div><h3>Research collaboration — Compact Traction Inverter</h3><p class="company">IIT Delhi × AT&amp;S</p><p>PCB-embedded power-module research, focusing on parasitic inductance and thermal design using electromagnetic and thermal simulation.</p></div></div>
+<div class="role"><div class="when">Nov 2018 – Jul 2022</div><div><h3>Electrical Engineering Technician</h3><p class="company">RINL · Visakhapatnam Steel Plant</p><p>Operation, maintenance and troubleshooting of industrial motors, transformers, drives and associated protection equipment.</p></div></div>
+</div>
+<details style="margin-top:18px"><summary style="cursor:pointer;color:var(--blue);font-weight:650">Earlier roles</summary>
+<div class="timeline" style="margin-top:8px">
+<div class="role"><div class="when">Jan 2017 – Nov 2018</div><div><h3>Power Electronics Design Consultant</h3><p class="company">GPT</p><p>Converter prototypes, circuit design, simulation and hardware validation.</p></div></div>
+<div class="role"><div class="when">Jan – Dec 2016</div><div><h3>Assistant System Engineer</h3><p class="company">Tata Consultancy Services</p><p>Quality analysis for insurance projects.</p></div></div>
+<div class="role"><div class="when">Jul 2015 – Jan 2016</div><div><h3>Research Assistant</h3><p class="company">KL University</p><p>Active power-filter modeling and simulation.</p></div></div>
+</div></details>
+</div></section>
+<section id="education" class="section"><div class="container">
+<h2>Education &amp; research</h2><p class="section-intro">Formal education in electrical engineering and applied power electronics.</p>
+<div class="education">
+<div class="panel"><div class="kicker">2022–2024</div><h3>M.Tech</h3><p>Power Electronics, Electrical Machines &amp; Drives<br>Indian Institute of Technology Delhi</p></div>
+<div class="panel"><div class="kicker">2012–2015</div><h3>B.E.</h3><p>Electrical &amp; Electronics Engineering<br>Andhra University</p></div>
+<div class="panel"><div class="kicker">2009–2012</div><h3>Diploma</h3><p>Electrical &amp; Electronics Engineering<br>Government Polytechnic College, Vijayawada</p></div>
+</div>
+<div class="publication"><div class="kicker">Selected publication</div><h3>Low Parasitic Loop Inductance Design and Characterization of a 1200 V, 200 A SiC MOSFET Half-Bridge PCB-embedded Power Module</h3><p>Research in compact power-module packaging and parasitic inductance. See my LinkedIn profile for publication details.</p></div>
+</div></section>
+<section id="notes" class="section"><div class="container">
+<h2>Engineering notebook</h2><p class="section-intro">An evolving archive of independent simulations, schematics and technical notes. Entries will be published as they are developed.</p>
+<div class="grid">
+<article class="panel"><div class="kicker">Hands-on engineering</div><h3>Simulations &amp; schematics</h3><p>Independent LTspice work, design calculations and reproducible converter experiments.</p><a class="link-arrow" href="/engineering/">Explore notebook →</a></article>
+<article class="panel"><div class="kicker">Technical writing</div><h3>Articles &amp; learning notes</h3><p>Explanations of converter design, control, modeling and measurement topics.</p><a class="link-arrow" href="/articles/">Browse articles →</a></article>
+</div></div></section>
+<section id="interests" class="section"><div class="container">
+<h2>Beyond engineering</h2><p class="section-intro">Literature is a personal interest. I keep a simple reference list of books I've read.</p>
+<div class="grid"><article class="panel"><h3>తెలుగు సాహిత్యం · Telugu literature</h3><p>Original Telugu writing and literature in translation.</p><a class="link-arrow" href="/books/telugu/">Browse Telugu books →</a></article>
+<article class="panel"><h3>English literature</h3><p>Fiction, classics and contemporary writing.</p><a class="link-arrow" href="/books/english/">Browse English books →</a></article></div>
+</div></section>
+<section id="contact" class="section"><div class="container">
+<h2>Get in touch</h2><p class="section-intro">For professional conversations about power electronics and converter engineering.</p>
+<div class="actions"><a class="button primary" href="mailto:sriitd24@gmail.com">Email</a><a class="button secondary" href="https://www.linkedin.com/in/ranjitsorra/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a class="button secondary" href="https://github.com/ranjitsorra" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+<p class="small-note"><a href="mailto:sriitd24@gmail.com">sriitd24@gmail.com</a> · <a href="mailto:ranjit.sorra@lotuswireless.com">ranjit.sorra@lotuswireless.com</a></p>
+</div></section>
 </main>
-
-<footer>
-  <div class="wrap row">
-    <span>&copy; <span id="yr">2026</span> Ranjit</span>
-    <span>Visakhapatnam, India</span>
-  </div>
-</footer>
-
-<script>
-/* ------------------------------------------------------------------
-   EDIT HERE. One object per project.
-   files: put the actual files in the repo (e.g. files/project-1/report.pdf)
-          and list them below. Any type works: pdf, png, jpg, zip, xlsx...
-   ------------------------------------------------------------------ */
-const PROJECTS = [
-  { title: "EV Traction Converter Test Bench (Academic)", description: "Graduate-level development of a SiC-based power conversion test bench, integrating power-stage design, digital control and laboratory validation. Detailed artifacts available only where publication is permitted.", tags: ["Academic", "SiC", "Power Conversion"], files: [] },
-  { title: "Non-Inverting Buck-Boost Converter (Academic)", description: "Course-level DC-DC converter design exploring voltage regulation, component selection and converter operating modes.", tags: ["Academic", "DC-DC", "Converter Design"], files: [] }
-]
-
-const esc = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-document.getElementById('project-grid').innerHTML = PROJECTS.map(p => `
-  <article class="card">
-    <h3>${esc(p.title)}</h3>
-    <p>${esc(p.description)}</p>
-    <div class="tags">${(p.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
-    ${(p.files && p.files.length)
-      ? `<div class="files">${p.files.map(f => `<a href="${esc(f.path)}" target="_blank" rel="noopener">${esc(f.label)}</a>`).join('')}</div>`
-      : ''}
-  </article>`).join('');
-</script>
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
-</body>
-</html>
+<footer><div class="container footer-inner"><span>© <span id="year">2026</span> Ranjit Sorra</span><span>Visakhapatnam, India</span></div></footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body></html>
