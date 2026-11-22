@@ -1,1 +1,106 @@
-[]
+[
+  {
+    "title": "ప్రకృతి పిలిచింది",
+    "author": "Jack London",
+    "status": "Completed",
+    "notes": "Original title: The Call of the Wild"
+  },
+  {
+    "title": "అమ్మ",
+    "author": "Maxim Gorky",
+    "status": "Completed",
+    "notes": "Original title: Mother"
+  },
+  {
+    "title": "లజ్జ",
+    "author": "Taslima Nasrin",
+    "status": "Completed"
+  },
+  {
+    "title": "తుపాను",
+    "author": "అడివి బాపిరాజు",
+    "status": "Completed"
+  },
+  {
+    "title": "మహాప్రస్థానం",
+    "author": "శ్రీ శ్రీ",
+    "status": "Completed"
+  },
+  {
+    "title": "అరుణ",
+    "author": "చలం",
+    "status": "Completed"
+  },
+  {
+    "title": "చాసో కథలు",
+    "author": "చాగంటి సోమయాజులు",
+    "status": "Completed"
+  },
+  {
+    "title": "ది డైరీ ఆఫ్ మిస్ శారద",
+    "author": "యండమూరి వీరేంద్రనాథ్",
+    "status": "Completed"
+  },
+  {
+    "title": "తప్పు చేద్దాం రండి",
+    "author": "యండమూరి వీరేంద్రనాథ్",
+    "status": "Completed"
+  },
+  {
+    "title": "వెన్నెల్లో ఆడపిల్ల",
+    "author": "యండమూరి వీరేంద్రనాథ్",
+    "status": "Completed"
+  },
+  {
+    "title": "అమృతం కురిసిన రాత్రి",
+    "author": "బాల గంగాధర్ తిలక్",
+    "status": "Completed"
+  },
+  {
+    "title": "బుడుగు",
+    "author": "ముళ్ళపూడి వెంకటరమణ",
+    "status": "Completed"
+  },
+  {
+    "title": "శప్త భూమి",
+    "author": "బండి నారాయణ స్వామి",
+    "status": "Completed"
+  },
+  {
+    "title": "అంతర్ముఖం",
+    "author": "యండమూరి వీరేంద్రనాథ్",
+    "status": "Completed"
+  },
+  {
+    "title": "ఆ రాత్రి",
+    "author": "చలం",
+    "status": "Completed"
+  },
+  {
+    "title": "డేగ రెక్కల చప్పుడు",
+    "author": "యండమూరి వీరేంద్రనాథ్",
+    "status": "Completed"
+  },
+  {
+    "title": "పరుసవేది",
+    "author": "Paulo Coelho",
+    "status": "Completed",
+    "notes": "Original title: The Alchemist"
+  },
+  {
+    "title": "అతడు అడవిని జయించాడు",
+    "author": "కె. కేశవరెడ్డి",
+    "status": "Completed"
+  },
+  {
+    "title": "చివరి గుడిసె",
+    "author": "కె. కేశవరెడ్డి",
+    "status": "Completed"
+  },
+  {
+    "title": "పూనాచ్చి",
+    "author": "Perumal Murugan",
+    "status": "Completed",
+    "notes": "Original title: Poonachi"
+  }
+]
