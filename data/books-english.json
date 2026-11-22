@@ -28,5 +28,25 @@
     "title": "The Metamorphosis",
     "author": "Franz Kafka",
     "status": "Completed"
+  },
+  {
+    "title": "Sapiens: A Brief History of Humankind",
+    "author": "Yuval Noah Harari",
+    "status": "Completed"
+  },
+  {
+    "title": "Eleanor Oliphant Is Completely Fine",
+    "author": "Gail Honeyman",
+    "status": "Completed"
+  },
+  {
+    "title": "Who Moved My Cheese?",
+    "author": "Spencer Johnson",
+    "status": "Completed"
+  },
+  {
+    "title": "The Subtle Art of Not Giving a F*ck",
+    "author": "Mark Manson",
+    "status": "Completed"
   }
 ]
