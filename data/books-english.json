@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "status": "Completed"
+  },
+  {
+    "title": "Animal Farm",
+    "author": "George Orwell",
+    "status": "Completed"
+  },
+  {
+    "title": "The Kite Runner",
+    "author": "Khaled Hosseini",
+    "status": "Completed"
+  },
+  {
+    "title": "The God of Small Things",
+    "author": "Arundhati Roy",
+    "status": "Completed"
+  },
+  {
+    "title": "The Handmaid's Tale",
+    "author": "Margaret Atwood",
+    "status": "Completed"
+  },
+  {
+    "title": "The Metamorphosis",
+    "author": "Franz Kafka",
+    "status": "Completed"
+  }
+]
