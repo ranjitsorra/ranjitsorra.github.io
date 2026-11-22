@@ -162,7 +162,7 @@
 
     <section id="projects">
       <h2>Selected Projects</h2>
-      <p class="sub">A sample of the work. Supporting documents are linked where available.</p>
+      <p class="sub">Selected academic projects and broad professional focus areas. Employer-confidential details are intentionally excluded.</p>
       <div class="grid" id="project-grid"></div>
     </section>
 
@@ -251,15 +251,13 @@
           and list them below. Any type works: pdf, png, jpg, zip, xlsx...
    ------------------------------------------------------------------ */
 const PROJECTS = [
-  { title: "Project 1", description: "Short description of the project, your role and the outcome.", tags: ["Tag A", "Tag B"],
-    files: [ { label: "Project report (PDF)", path: "files/project-1/report.pdf" },
-             { label: "Schematic (PNG)",      path: "files/project-1/schematic.png" } ] },
-  { title: "Project 2", description: "Short description of the project, your role and the outcome.", tags: ["Tag A", "Tag B"], files: [] },
-  { title: "Project 3", description: "Short description of the project, your role and the outcome.", tags: ["Tag A", "Tag B"], files: [] },
-  { title: "Project 4", description: "Short description of the project, your role and the outcome.", tags: ["Tag A", "Tag B"], files: [] },
-  { title: "Project 5", description: "Short description of the project, your role and the outcome.", tags: ["Tag A", "Tag B"], files: [] },
-  { title: "Project 6", description: "Short description of the project, your role and the outcome.", tags: ["Tag A", "Tag B"], files: [] }
-];
+  { title: "EV Traction Converter Test Bench (Academic)", description: "Graduate-level development of a SiC-based power conversion test bench, integrating power-stage design, digital control and laboratory validation. Detailed artifacts available only where publication is permitted.", tags: ["Academic", "SiC", "Power Conversion"], files: [] },
+  { title: "Embedded Power Module Research (Academic)", description: "Research work exploring compact power-module construction and the electrical and thermal trade-offs of PCB-integrated power electronics.", tags: ["Academic", "Packaging", "Thermal Design"], files: [] },
+  { title: "Non-Inverting Buck-Boost Converter (Academic)", description: "Course-level DC-DC converter design exploring voltage regulation, component selection and converter operating modes.", tags: ["Academic", "DC-DC", "Converter Design"], files: [] },
+  { title: "Power Converter Development (Professional Focus)", description: "Experience across converter engineering activities. Employer-specific designs, specifications and outcomes are intentionally excluded to respect confidentiality obligations.", tags: ["Professional Focus", "Confidentiality-Safe"], files: [] },
+  { title: "Embedded Control & Firmware (Professional Focus)", description: "Technical focus on digital control, embedded platforms and power-converter integration. No proprietary algorithms or source code are shared.", tags: ["Professional Focus", "Embedded Control"], files: [] },
+  { title: "Hardware Bring-Up & Validation (Professional Focus)", description: "Technical focus on systematic integration, measurement and verification practices. Internal test procedures and results are not published.", tags: ["Professional Focus", "Testing"], files: [] }
+]
 
 const esc = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 document.getElementById('project-grid').innerHTML = PROJECTS.map(p => `
